@@ -5,7 +5,9 @@
 {% block content %}
 <h1>Dashboard</h1>
 
-<p>Welcome to your {{section}}.</p>
-<img  src="{{request.profile.image}}"/>
-
+<p>
+    Welcome to your dashboard.
+    You can <a href="{% url 'account:edit' %}">edit your profile</a>
+    or start exploring the site.
+</p>
 {% endblock %}

@@ -10,9 +10,7 @@ from .models import Profile
 @login_required
 def dashboard(request):
 
-    profile= get_object_or_404(Profile,pk =request.user)
-
-    print("user data", profile)
+  
 
     return render(request, "account/dashboard.html", {"section": "dashboard"})
 
@@ -25,6 +23,10 @@ def register(request):
                 user_form.cleaned_data['password']
             )
             new_user.save()
+            messages.success(
+                request,
+                'Your account has been created successfully. You can now log in.'
+            )
             return render(
                 request,
                 'account/register_done.html',
