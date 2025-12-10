@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 def dashboard(request):
 
     return render(request, "account/dashboard.html", {"section": "dashboard"})
+    
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
