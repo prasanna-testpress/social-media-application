@@ -2,25 +2,39 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>{% block title %}{% endblock %}</title>
- <link href="{% static 'css/base.css' %}" rel="stylesheet" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" />
 </head>
 <body>
- <div id="header">
- <span class="logo">Bookmarks</span>
 
- <a href="{% url 'account:register' %}">Register</a>
+<div id="header">
+    <span class="logo">Bookmarks</span>
 
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'account:edit' %}">Edit profile</a>
 
-    <form method="post" action="{% url 'account:logout' %}" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-</form>
+        <form method="post" action="{% url 'account:logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'account:login' %}">Log in</a>
+        <a href="{% url 'account:register' %}">Register</a>
+    {% endif %}
+</div>
 
- </div>
- <div id="content">
- {% block content %}
- {% endblock %}
- </div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
 </body>
 </html>
