@@ -57,6 +57,7 @@ MIDDLEWARE = [
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
 ]
 
 
@@ -140,3 +141,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'account:dashboard'
 LOGOUT_REDIRECT_URL = 'account:login'
 LOGIN_URL = 'account:login'
+
+SOCIAL_AUTH_FACEBOOK_KEY='1365651481964092'
+SOCIAL_AUTH_FACEBOOK_SECRET='8d31094af130a33004f6d4b65b396f49'
